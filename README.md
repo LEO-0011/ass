@@ -54,15 +54,61 @@ A powerful Telegram bot for compressing, encoding, and manipulating video files.
 
 ## ⚙️ Configuration
 
-The bot is configured via environment variables (or `config.env`).
+There are two ways to configure the bot:
 
-- `API_ID`, `API_HASH`: Telegram API credentials.
-- `BOT_TOKEN`: Telegram Bot Token.
-- `MONGO_URI`: MongoDB connection string.
-- `OWNER_ID`: Your Telegram User ID.
-- `SUDO_USERS`: List of admin user IDs.
-- `LOG_CHANNEL`: Channel ID for logging tasks.
-- `DOWNLOAD_DIR`, `ENCODE_DIR`: Paths for working directories.
+### 1. Using a `config.env` file (Recommended for local development)
+
+1.  Rename the `VideoEncoder/config.env.template` file to `config.env`.
+2.  Open the `config.env` file and fill in the required values.
+
+    ```
+    # Basics #
+    API_ID =  # https://my.telegram.org
+    API_HASH = "" # https://my.telegram.org
+    BOT_TOKEN = ""
+
+    # Authorization # - List of id's, separated by space -
+    OWNER_ID =
+    SUDO_USERS = ""
+    EVERYONE_CHATS = ""
+
+    # Log Channel #
+    LOG_CHANNEL =
+
+    # Database #
+    SESSION_NAME = "encoderbot"
+    MONGO_URI = ""
+
+    # Google Drive #
+    INDEX_URL = ""
+    DRIVE_DIR = ""
+
+    # Optional #
+    DOWNLOAD_DIR = "VideoEncoder/downloads/"
+    ENCODE_DIR = "VideoEncoder/encodes/"
+    ```
+
+### 2. Using Environment Variables (Recommended for deployment)
+
+You can also set the configuration variables as environment variables. This is the recommended method for deploying the bot on platforms like Heroku or Render.
+
+**Required Variables:**
+
+*   `API_ID`: Your Telegram API ID from [my.telegram.org](https://my.telegram.org).
+*   `API_HASH`: Your Telegram API Hash from [my.telegram.org](https://my.telegram.org).
+*   `BOT_TOKEN`: Your bot token from [@BotFather](https://t.me/BotFather).
+*   `OWNER_ID`: Your Telegram user ID.
+*   `MONGO_URI`: Your MongoDB connection string.
+
+**Optional Variables:**
+
+*   `SUDO_USERS`: A space-separated list of user IDs who have sudo access to the bot.
+*   `EVERYONE_CHATS`: A space-separated list of chat IDs where everyone can use the bot.
+*   `LOG_CHANNEL`: The ID of the Telegram channel where the bot will send logs.
+*   `INDEX_URL`: The URL of your Google Drive index.
+*   `DRIVE_DIR`: The ID of the Google Drive folder where you want to upload the encoded files.
+*   `DOWNLOAD_DIR`: The directory where the bot will download files. Defaults to `VideoEncoder/downloads/`.
+*   `ENCODE_DIR`: The directory where the bot will store encoded files. Defaults to `VideoEncoder/encodes/`.
 
 ## 📝 Notes
 
